@@ -33,8 +33,11 @@ def save_data(content, getUrl):
 def get_data(url):
     try:
         data = req.get(url)
-        content = data.content
-        save_data(content, url)
+        if data.status_code == 200:
+            content = data.content
+            save_data(content, url)
+        else:
+            sys.exit("Invalid URL Try again! \nStatus Code: {}".format(data.status_code))
 
     except req.exceptions.Timeout as timeOut:
         time.sleep(5)
@@ -45,13 +48,13 @@ def get_data(url):
             save_data(content, url)
 
         except req.exceptions.Timeout as timeOut:
-            sys.exit("Time Out try again later")
+            sys.exit("Time Out try again later", timeOut)
 
     except req.exceptions.InvalidURL as invurl:
-        sys.exit("Invalid URL")
+        sys.exit("Invalid URL", invurl)
 
     except req.exceptions.HTTPError as httpErr:
-        sys.exit("Client not Availble")
+        sys.exit("Client not Availble", httpErr)
 
         
 
@@ -71,6 +74,13 @@ def import_data():
     print(tennis.head(5))
 
 if __name__ == "__main__":
-    url = "http://tennis-data.co.uk/2011/2011.xls"
-    get_data(url)
-    import_data()
+    try:
+        url = sys.argv[1]
+    except IndexError as e:
+        sys.exit("Please Provide URL")
+    # url = "http://tennis-data.co.uk/2011/2011.xls"
+    if url == "":
+        print("URL is not included")
+    else:
+        get_data(url)
+        import_data()
