@@ -15,7 +15,7 @@ For Linux
 ### 2. To run the python app from Command Line Interface:
 
 ```
-    python webapp.py "url"
+    python webapp.py "Your URL"
 
 ```
 For Example:
