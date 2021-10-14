@@ -12,40 +12,17 @@ For Linux
 ```
     pip3 install -r requirements.txt
 ```
-### 2. To run web app:
+### 2. To run the python app from Command Line Interface:
 
 ```
-    python webapp.py
-```
-### 3. Open up a browser and type following url
-```
-    http://127.0.0.1:5000
-```
-
-# Run docker image using following commnads 
-
-### 1. Load the docker image name "event_docker.tar" using:
+    python webapp.py "url"
 
 ```
-    docker load –i event_docker.tar
+For Example:
+```
+python webapp.py "http://tennis-data.co.uk/2011/2011.xls"
 
 ```
 
-### 2. Check if image is loaded successfully
-
-```
-    docker image ls
-```
-
-### 3. Now deploy the docker image using:
-
-```
-    docker run -it event_docker:latest
-```
-### 4. Finally check on the browser by following url:
-
-```
-    http://127.0.0.1:5000
-```
 
 
